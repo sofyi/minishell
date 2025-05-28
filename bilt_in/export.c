@@ -6,7 +6,7 @@
 /*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 13:20:29 by slamhaou          #+#    #+#             */
-/*   Updated: 2025/05/28 16:10:24 by slamhaou         ###   ########.fr       */
+/*   Updated: 2025/05/28 19:39:02 by slamhaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,7 @@ int	chake_args(char *str)
 	}
 	return (0);
 }
-int	serch_tosawy_(char *str)
-{
-	int i;
 
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '=')
-			return (1);
-		i++;
-	}
-	return (0);
-}
 void	print_all_var(t_env_list *env)
 {
 	while (env)
