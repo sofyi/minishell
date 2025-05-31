@@ -6,7 +6,7 @@
 /*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:38:08 by slamhaou          #+#    #+#             */
-/*   Updated: 2025/05/28 16:19:44 by slamhaou         ###   ########.fr       */
+/*   Updated: 2025/05/30 11:18:47 by slamhaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,21 @@ char	*it_correct_comnd(char *cmd, t_env_list *env)
 	free_tab(split_path);
 	return (NULL);
 }
-int		bil_in(t_my_list *list, t_env_list *list_env)
+int		bilt_in(t_my_list *list, t_env_list **list_env)
 {
-	if (str_cmp(list->cmd, "pwd"))
-		my_pwd();
+	if (str_cmp(list->cmd, "pwd")|| str_cmp(list->cmd, "PWD"))
+		return(my_pwd());
 	else if (str_cmp(list->cmd, "env"))
-		my_env(list_env);
-	else 
-		return(0);	
-	return(1);
+		return (my_env(*list_env));
+	else if (str_cmp(list->cmd, "cd"))
+		return(my_cd(*list_env,list->args));
+	else if (str_cmp(list->cmd, "unset"))
+		return(my_unset(list_env,list->args));
+	else if (str_cmp(list->cmd, "export"))
+		return(my_export(*list_env,list->args));
+	else if (str_cmp(list->cmd, "exit"))
+		my_exit(list->args);
+	return(0);	
 }
 
 void	excut_comand(t_my_list *list, t_env_list *list_env)
@@ -68,7 +74,7 @@ void	excut_comand(t_my_list *list, t_env_list *list_env)
 	
 	arg = NULL;
 	// int status;
-	b = bil_in(list, list_env);
+	b = bilt_in(list, &list_env);
 	if (b == 0)
 	{
 	//	arg = return_list_to_arg(list_env);
@@ -88,16 +94,9 @@ void	excut_comand(t_my_list *list, t_env_list *list_env)
 }
 void	exc(t_my_list *list, t_env_list *list_env)
 {
-	if (!list->next)
+	while(list)
 	{
 		excut_comand(list, list_env);
-	}
-	else
-	{
-		while(list)
-		{
-			excut_comand(list, list_env);
-			list = list->next;
-		}
+		list = list->next;
 	}
 }

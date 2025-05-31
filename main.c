@@ -6,7 +6,7 @@
 /*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 09:32:00 by slamhaou          #+#    #+#             */
-/*   Updated: 2025/05/30 09:07:20 by slamhaou         ###   ########.fr       */
+/*   Updated: 2025/05/30 11:17:46 by slamhaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,7 @@ t_my_list *smal_list(char *s)
 		return NULL;
 	return ft_lst_new(args[0], args);
 }
-int		bilt_in(t_my_list *list, t_env_list **list_env)
-{
-	if (str_cmp(list->cmd, "pwd"))
-		my_pwd();
-	else if (str_cmp(list->cmd, "env"))
-		my_env(*list_env);
-	else if (str_cmp(list->cmd, "cd"))
-		my_cd(*list_env,list->args);
-	else if (str_cmp(list->cmd, "unset"))
-		my_unset(list_env,list->args);
-	else if (str_cmp(list->cmd, "export"))
-		my_export(*list_env,list->args);
-	else 
-		return(0);	
-	return(1);
-}
+
 
 int main(int ac, char **av, char **env) 
 {
@@ -69,6 +54,9 @@ int main(int ac, char **av, char **env)
 	av = NULL;
 	e = get_list_env(env);
 	input = "wee";
+	// int r = 255 -1;
+	// printf("%d\n", r);
+	// exit (0);
 	while (input) 
 	{
 		input = readline("Minishell$ ");

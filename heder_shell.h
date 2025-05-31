@@ -6,7 +6,7 @@
 /*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 19:47:26 by slamhaou          #+#    #+#             */
-/*   Updated: 2025/05/28 16:18:29 by slamhaou         ###   ########.fr       */
+/*   Updated: 2025/05/30 18:22:36 by slamhaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 #include <string.h>
+#include <limits.h>
 #include <readline/readline.h>
 #define SUCCESS 0
 #define	ERORR	1
@@ -68,11 +69,14 @@ char		*str_join(char *s1, char *s2);
 char		*str_dup(char *s);
 void		free_tab(char **str);
 char		*my_get_env(char *str, t_env_list *env);
+int			is_alpha(char c);
 //////
 int		my_pwd(void);
-void	my_env(t_env_list *env);
+int		my_env(t_env_list *env);
 int		my_cd(t_env_list *ev, char **arg);
 int		my_unset(t_env_list **en, char **args);
 int		my_export(t_env_list *env, char **args);
+void		my_exit(char **args);
 int		write_erorr(char *str, char *var);
+int		bilt_in(t_my_list *list, t_env_list **list_env); //hydeha ger katesty beha
 # endif

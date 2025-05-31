@@ -6,13 +6,13 @@
 /*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 13:00:50 by slamhaou          #+#    #+#             */
-/*   Updated: 2025/05/27 15:58:51 by slamhaou         ###   ########.fr       */
+/*   Updated: 2025/05/30 10:09:45 by slamhaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../heder_shell.h"
 
-void	my_env(t_env_list *env)
+int	my_env(t_env_list *env)
 {
 	while (env)
 	{
@@ -20,4 +20,5 @@ void	my_env(t_env_list *env)
 			printf("%s=%s\n", env->content.first, env->content.last);
 		env = env->next;
 	}
+	return (0);
 }
